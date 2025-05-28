@@ -13,7 +13,7 @@ export const build = async (network: string, subgraphType: string): Promise<void
   await exec(
     `cross-env mustache config/${network}/config.json ${subgraphType}-subgraph.template.yaml > ${subgraphType}-subgraph.yaml`
   )
-  const { stdout, stderr } = await exec(`graph codegen ${subgraphType}-subgraph.yaml`)
+  const { stdout, stderr } = await exec(`graph codegen ${subgraphType}-subgraph.yaml && graph build ${subgraphType}-subgraph.yaml`)
   console.log(stdout)
   console.log(stderr)
 }
